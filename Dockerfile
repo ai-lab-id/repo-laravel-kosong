@@ -5,6 +5,9 @@ RUN apt-get update && apt-get install -y \
     git unzip libzip-dev libonig-dev \
     && docker-php-ext-install pdo_mysql mbstring zip fileinfo
 
+# HAPUS DEFAULT NGINX SITE (INI KUNCI)
+RUN rm -f /etc/nginx/sites-enabled/default
+
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
