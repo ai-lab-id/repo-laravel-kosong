@@ -1,13 +1,8 @@
-version: "3.9"
-
 services:
   app:
     build: .
-    working_dir: /app
     expose:
-      - "8000"
-    volumes:
-      - laravel_storage:/app/storage
+      - "9000"
     depends_on:
       - mysql
     networks:
@@ -30,4 +25,3 @@ networks:
 
 volumes:
   mysql_data:
-  laravel_storage:
