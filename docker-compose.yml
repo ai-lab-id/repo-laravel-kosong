@@ -3,9 +3,9 @@ version: "3.9"
 services:
   app:
     build: .
-    container_name: laravel_app
     working_dir: /var/www/html
     volumes:
+      - app_code:/var/www/html
       - laravel_storage:/var/www/html/storage
     depends_on:
       - mysql
@@ -17,10 +17,13 @@ services:
       context: ./docker/nginx
     expose:
       - "80"
+    volumes:
+      - app_code:/var/www/html:ro
     depends_on:
       - app
     networks:
       - laravel_net
+
 
   mysql:
     image: mysql:8.0
@@ -41,3 +44,4 @@ networks:
 volumes:
   mysql_data:
   laravel_storage:
+  app_code:
