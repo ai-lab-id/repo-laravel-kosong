@@ -7,7 +7,7 @@ services:
     depends_on:
       - mysql
     networks:
-      - laravel_net
+      - laravel_net_kosong
     environment:
       APP_ENV: production
       APP_DEBUG: "false"
@@ -31,10 +31,10 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
-      - laravel_net
+      - laravel_net_kosong
 
 networks:
-  laravel_net:
+  laravel_net_kosong:
     driver: bridge
 
 volumes:
