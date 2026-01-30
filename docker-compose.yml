@@ -13,12 +13,10 @@ services:
       - laravel_net
 
   nginx:
-    image: nginx:alpine
-    container_name: laravel_nginx
+    build:
+      context: ./docker/nginx
     expose:
       - "80"
-    volumes:
-      - ./docker/nginx:/etc/nginx/conf.d
     depends_on:
       - app
     networks:
