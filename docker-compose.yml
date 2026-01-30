@@ -1,7 +1,6 @@
 services:
   app:
     build: .
-    container_name: laravel_app
     expose:
       - "80"
     depends_on:
