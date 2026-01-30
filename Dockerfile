@@ -13,8 +13,8 @@ COPY . .
 RUN composer install --no-dev --optimize-autoloader \
  && chown -R www-data:www-data storage bootstrap/cache
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY docker/nginx/default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 
-CMD service nginx start && php-fpm
+CMD ["sh", "-c", "php-fpm -D && nginx -g 'daemon off;'"]
