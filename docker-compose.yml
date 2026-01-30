@@ -3,6 +3,9 @@ services:
     build: .
     expose:
       - "80"
+    labels:
+      caddy: testing-laravel-kosong2.ai-lab.id
+      caddy.reverse_proxy: "{{upstreams 80}}"
     depends_on:
       - mysql
     environment:
