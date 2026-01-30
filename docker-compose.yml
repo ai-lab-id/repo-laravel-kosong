@@ -5,7 +5,6 @@ services:
     build: .
     working_dir: /var/www/html
     volumes:
-      - app_code:/var/www/html
       - laravel_storage:/var/www/html/storage
     depends_on:
       - mysql
@@ -17,17 +16,13 @@ services:
       context: ./docker/nginx
     expose:
       - "80"
-    volumes:
-      - app_code:/var/www/html:ro
     depends_on:
       - app
     networks:
       - laravel_net
 
-
   mysql:
     image: mysql:8.0
-    container_name: laravel_mysql
     environment:
       MYSQL_DATABASE: laravel_app
       MYSQL_USER: laravel
@@ -44,4 +39,3 @@ networks:
 volumes:
   mysql_data:
   laravel_storage:
-  app_code:
