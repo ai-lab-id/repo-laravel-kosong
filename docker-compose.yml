@@ -2,11 +2,11 @@ version: "3.9"
 
 services:
   app:
-    image: php:8.3-fpm
+    build: .
     container_name: laravel_app
     working_dir: /var/www/html
     volumes:
-      - .:/var/www/html
+      - laravel_storage:/var/www/html/storage
     depends_on:
       - mysql
     networks:
@@ -14,10 +14,10 @@ services:
 
   nginx:
     image: nginx:alpine
+    container_name: laravel_nginx
     expose:
       - "80"
     volumes:
-      - .:/var/www/html
       - ./docker/nginx:/etc/nginx/conf.d
     depends_on:
       - app
@@ -27,8 +27,6 @@ services:
   mysql:
     image: mysql:8.0
     container_name: laravel_mysql
-    expose:
-      - "3306"
     environment:
       MYSQL_DATABASE: laravel_app
       MYSQL_USER: laravel
@@ -44,3 +42,4 @@ networks:
 
 volumes:
   mysql_data:
+  laravel_storage:
