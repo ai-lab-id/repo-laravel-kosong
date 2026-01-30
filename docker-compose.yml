@@ -1,7 +1,7 @@
 services:
   app:
     build: .
-    expose:
+    ports:
       - "80"
     labels:
       caddy: testing-laravel-kosong2.ai-lab.id
